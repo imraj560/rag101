@@ -7,17 +7,19 @@ import { useCompletion } from "@ai-sdk/react";
 
 export default function Home() {
 
- const {input, handleInputChange, handleSubmit} = useCompletion()
- const message = false;
+ const {isLoading, input, handleInputChange, handleSubmit} = useCompletion();
+ const {messages, setMessages} = useChat();
+
+ const noMessages = true;
 
   return (
     <main>
       <Image src="/logo.png" alt="logo" width={175} height={175} />
-      <p className="text-2xl font-bold tracking-wider text-gray-500">TRUSTED F1 SOURCE <span className="text-[12px]">TM</span></p>
-      <section>
-        {message ? (
+      
+      <section className={noMessages ? "" : "populated"}>
+        {noMessages ? (
           <>
-            <p className="">Ask Anything regarding F1</p>
+            <p className="text-xl tracking-wider text-gray-400">LATEST F1 SOURCE <span className="text-[12px] font-bold">TM</span></p>
             <br/>
             {/**<PromptSuggestionRow/> */}
           </>
@@ -28,14 +30,13 @@ export default function Home() {
           </>
       )}
 
+      </section>
       <form onSubmit={handleSubmit}>
 
-        <input type="text" className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={handleInputChange} placeholder="Ask anything" />
+        <input type="text" className="question-box" onChange={handleInputChange} placeholder="What do you want to know?" />
 
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" type="submit">Submit</button>
+        <button className="submit-button" type="submit">Ask ?</button>
       </form>
-
-      </section>
     </main>
   );
 }
