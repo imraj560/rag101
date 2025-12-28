@@ -3,6 +3,10 @@
 import Image from "next/image";
 import { useChat } from "@ai-sdk/react";
 import { useCompletion } from "@ai-sdk/react";
+import LoadingBubble from "./components/LoadingBubble";
+import PromptSuggestionsRow from "./components/PromptSuggestionsRow";
+import Bubble from "./components/Bubble";
+
 
 
 export default function Home() {
@@ -10,7 +14,16 @@ export default function Home() {
  const {isLoading, input, handleInputChange, handleSubmit} = useCompletion();
  const {messages, setMessages} = useChat();
 
- const noMessages = true;
+ const noMessages = false;
+
+  const handlePrompt = ({promtpText}) => {
+
+      const msg = {
+        id: crypto.randomUUID(),
+        content: promtpText,
+        role: 'user'
+      }
+  }
 
   return (
     <main>
@@ -21,12 +34,12 @@ export default function Home() {
           <>
             <p className="text-xl tracking-wider text-gray-400">LATEST F1 SOURCE <span className="text-[12px] font-bold">TM</span></p>
             <br/>
-            {/**<PromptSuggestionRow/> */}
+            <PromptSuggestionsRow onPromptClick={handlePrompt}/>
           </>
         ):(
           <>
-            {/**map message onto text bubbles */}
-            {/**<LoadingBubble/> */}
+            {messages.map((message, index) => <Bubble key={`message-${index}`} message={message} />)}
+            {isLoading && <LoadingBubble/>}
           </>
       )}
 
