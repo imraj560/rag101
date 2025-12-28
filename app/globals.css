@@ -41,9 +41,14 @@
 
   }
 
+  section {
+
+    @apply w-[100%]
+  }
+
   section.populated{
 
-    @apply h-full flex flex-col justify-end overflow-scroll
+    @apply h-[100%] flex flex-col justify-end overflow-auto
   }
 
   .starter-text{
@@ -66,4 +71,13 @@
     @apply w-[15%] bg-red-600 rounded-4xl text-white cursor-pointer
   }
  
+}
+
+@layer components {
+
+  .bubble {
+
+    @apply m-8 p-8 text-[15px] border-0 w-[80%] text-left;
+  }
+
 }
