@@ -80,4 +80,22 @@
     @apply m-8 p-8 text-[15px] border-0 w-[80%] text-left;
   }
 
+  .bubble.user {
+
+    @apply rounded-tl-[20px] rounded-tr-[20px] rounded-br-[0px] rounded-bl-[20px] bg-[#E1F4FFFF] ml-[auto];
+
+  }
+
+  .bubble.assistant {
+
+    @apply rounded-tl-[20px] rounded-tr-[20px] rounded-br-[20px] rounded-bl-[0px] bg-[#dce7ff];
+
+  }
+
+  .prompt-suggestion-button{
+
+    @apply m-8 p-8 text-[15px] border-0 bg-[#fff] rounded-none rounded-bl-[20px] text-[#383838];
+    
+  }
+
 }

@@ -1,29 +1,34 @@
 'use client'
 
 import Image from "next/image";
-import { useChat } from "@ai-sdk/react";
-import { useCompletion } from "@ai-sdk/react";
+import { useCompletion, useChat } from "@ai-sdk/react";
 import LoadingBubble from "./components/LoadingBubble";
 import PromptSuggestionsRow from "./components/PromptSuggestionsRow";
 import Bubble from "./components/Bubble";
+import { Message } from "openai/resources/beta/threads/messages.mjs";
 
 
 
 export default function Home() {
 
  const {isLoading, input, handleInputChange, handleSubmit} = useCompletion();
+ const {sendMessage} = useChat();
+
  const {messages, setMessages} = useChat();
 
- const noMessages = false;
+ const noMessages = !messages || messages.length === 0;
 
-  const handlePrompt = ({promtpText}) => {
+const handlePrompt = (promptText: string) => {
+  sendMessage({
+    text: promptText,
+  });
 
-      const msg = {
-        id: crypto.randomUUID(),
-        content: promtpText,
-        role: 'user'
-      }
-  }
+      sendMessage({
+      parts: [{ type: "text", text: promptText }],
+    });
+
+  
+}
 
   return (
     <main>
