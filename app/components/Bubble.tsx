@@ -1,9 +1,12 @@
 import React from 'react'
 
 function Bubble({message}) {
+
+  const {content, role} = message;
+
   return (
-    <div className='bubble'>
-      <h1>This is my Bubble</h1>
+    <div className={`${role} bubble`}>
+      {content}
     </div>
   )
 }
